@@ -1,5 +1,5 @@
 # Nesa-Web-Scrapper
-##Practise in form of console application that scrapes data from specific site
+## Practise in form of console application that scrapes data from specific site
 
 **To Do List**
 
