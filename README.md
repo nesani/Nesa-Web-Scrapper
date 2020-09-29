@@ -9,6 +9,6 @@
   * Add option to select single curency instead of excecuting all currencies everytime
   * Tinker about improving progression
 * Add MSI Installer 
-* “Don't Panic.” 
+* **“Don't Panic.”** 
   
     
