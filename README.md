@@ -2,7 +2,7 @@
 ## Practise in form of console application that scrapes data from specific site
 
 **IMPORTANT**
-* In order for application to work as intended, please set correct file path in application settings so you don't end up searching for it :D
+* In order for application to work as intended, please set correct file path in application settings so you don't waste time searching for output :D
 
 **To Do List**
 * Add Exception to handle Get Currencies if there are none
