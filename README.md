@@ -1,6 +1,9 @@
 # Nesa-Web-Scrapper
 ## Practise in form of console application that scrapes data from specific site
 
+**IMPORTANT**
+* In order for application to work properly, please set correct file path in application settings
+
 **To Do List**
 * Add Exception to handle Get Currencies if there are none
 * Refactor, Refactor, Refactor, and more Refactoring.
