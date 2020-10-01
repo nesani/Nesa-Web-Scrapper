@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebScrapper.Properties {
+namespace WebScrapper.ConsoleApp.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -29,6 +29,15 @@ namespace WebScrapper.Properties {
         public string TargetUrl {
             get {
                 return ((string)(this["TargetUrl"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Users\\Nesani\\Documents\\WebScrapper")]
+        public string TargetDir {
+            get {
+                return ((string)(this["TargetDir"]));
             }
         }
     }

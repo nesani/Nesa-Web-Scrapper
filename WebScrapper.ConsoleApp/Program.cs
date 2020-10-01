@@ -16,13 +16,16 @@ namespace WebScrapper.ConsoleApp
     {
         static void Main(string[] args)
         {
-
+            //Initializing Result Dictionary that will be printed after all curencies are retrieved
             Dictionary<string, string> result = new Dictionary<string, string>();
 
             Console.WriteLine("Getting list of all Curencies");
             Console.WriteLine("-----------------------------------------------------------------------------------------");
+
+            //Getting list of all Curencies
             var allCurrencies = Curencies.GetAllCurencies(Properties.Settings.Default.TargetUrl);
 
+            //For Every Currency Get Data, Parse it and Create CSV file
             foreach (var curency in allCurrencies)
             {
                 
@@ -31,23 +34,31 @@ namespace WebScrapper.ConsoleApp
 
                 try
                 {
+                    //Getting data from submitted form
                     var dataFromSubmitedFrom = DataParsing.GetDataFromSubmittedForm(Properties.Settings.Default.TargetUrl, curency);
+
+                    //Parsing Data in appropriate model
                     var pageDetails = DataParsing.GetPageDetails(dataFromSubmitedFrom);
-                    CSVManipulation.ExportToCSV(pageDetails, curency);
+
+                    //Creating  CSV
+                    CSVManipulation.ExportToCSV(pageDetails, curency, Properties.Settings.Default.TargetDir);
                     result.Add(curency, "Successfuly Gathered data");
                 }
+
+                //If No Records are displayed for specific currency throw custom error
                 catch (NoRecordsException ex)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine(ex.Message);
+                    Console.WriteLine($"{ex.Message} for {curency}");
                     Console.ResetColor();
                     Console.WriteLine("-----------------------------------------------------------------------------------------");
                     result.Add(curency, StaticStrings.NoRecordsForCurrency);
                 }
+                // If Submission fails for specific page, throw custom error
                 catch(SubmisionFailedException ex)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine(ex.Message);
+                    Console.WriteLine($"{ex.Message} for {curency}");
                     Console.ResetColor();
                     Console.WriteLine("-----------------------------------------------------------------------------------------");
                     result.Add(curency, StaticStrings.UnableToSubmitForm);
@@ -55,6 +66,7 @@ namespace WebScrapper.ConsoleApp
 
             }
 
+            //Print result of beforementioned dictionary
             Console.WriteLine("------------------------------------------RESULT-----------------------------------------");
             foreach (var item in result)
             {
@@ -63,7 +75,15 @@ namespace WebScrapper.ConsoleApp
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine($" curency {item.Key} completed with {item.Value}");
                     Console.ResetColor();
-                }else
+                }
+                else if(item.Value == StaticStrings.UnableToSubmitForm)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine($" curency {item.Key} completed with {item.Value}");
+                    Console.ResetColor();
+                }
+                
+                else
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine($" curency {item.Key} completed with {item.Value}");

@@ -12,6 +12,7 @@ namespace WebScrapper.Framework
 {
     public static class DataParsing 
     {
+        //parsing Data to a Model
         public static List<PageDetails> GetPageDetails(List<HtmlNode> htmlsNodes)
         {
             var lstPageDetails = new List<PageDetails>();
@@ -19,6 +20,8 @@ namespace WebScrapper.Framework
             Console.WriteLine("Parsing Colected Data");
             Console.WriteLine("-----------------------------------------------------------------------------------------");
 
+            //Table data from site is taken in order it is displayed
+            // #Not my proudest moment
             for (int i = 0; i < htmlsNodes.Count; i++)
             {
                 var pageDetails = new PageDetails();
@@ -57,6 +60,7 @@ namespace WebScrapper.Framework
             return lstPageDetails;
         }
 
+        //Getting data from a submitted form
         public static List<HtmlNode> GetDataFromSubmittedForm(string url, string curency)
         {
             int curentPage = 0;
@@ -64,12 +68,18 @@ namespace WebScrapper.Framework
 
             List<HtmlNode> data = new List<HtmlNode>();
 
+            //Because i was unable to get last page, i had to improvise,
+            //Bank page ALWAYS returns last page in it's hidden form field
+            //So i made logic around it
             do
             {
                 curentPage++;
 
+                // Submitting form
                 var formResult = HtmlManipulation.SubmitForm(url, curency, curentPage, out string pageOnHtml);
 
+                //Sellecting all elements with specific css, in this case "hui12_20"
+                // which is table elements with output
                 var htmlDataNodes = formResult.CssSelect(".hui12_20").ToList();
 
                 currentPageOnHtml = int.Parse(pageOnHtml);
@@ -78,7 +88,7 @@ namespace WebScrapper.Framework
                 Console.WriteLine("-----------------------------------------------------------------------------------------");
 
 
-
+                // if no records are found  throw error
                 if (htmlDataNodes[0].InnerHtml == StaticStrings.NoRecords)
                 {
                     throw new NoRecordsException("No records found");

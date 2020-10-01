@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{365DA721-38A4-4983-BFB9-1B8679A70D18}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>OSMWebScrapper</RootNamespace>
-    <AssemblyName>OSMWebScrapper</AssemblyName>
+    <RootNamespace>WebScrapper.ConsoleApp</RootNamespace>
+    <AssemblyName>WebScrapper.ConsoleApp</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
