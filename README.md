@@ -7,6 +7,7 @@
 **To Do List**
 * Add Exception to handle Get Currencies if there are none
 * Refactor, Refactor, Refactor, and more Refactoring.
+* Add Unit tests.
 * Improve UI. (Make it Preety)
   * Add option to select single curency instead of excecuting all currencies everytime.
   * Tinker about improving progression.
